@@ -1,0 +1,238 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #484343;
+    scroll-behavior: smooth;
+  }
+  
+  /* Navbar Styles */
+  /* Basic navbar style */
+  #navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #121212;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    transition: top 0.3s ease-in-out;
+  }
+  
+  
+  #navbar a {
+    text-decoration: none;
+    ;
+  }
+  
+  .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(192, 54, 54);
+  }
+  
+  .auth-buttons a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+  }
+  
+  .auth-buttons a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  /* Style Login/Signup links like buttons */
+  .nav-links li a {
+    display: inline-block;
+    padding: 8px 18px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: 0.3s ease;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+  
+  .nav-links li a:hover {
+    background-color: white;
+    color: black;
+    text-decoration: none;
+  }
+  
+  #navbar h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 17px;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Responsive adjustment for small screens */
+  @media (max-width: 768px) {
+    #navbar h2 {
+      font-size: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #navbar h2 {
+      font-size: 14px;
+    }
+  }
+  
+  
+  
+  
+  /* Menu Toggle for Mobile */
+  .menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      background-color: #000;
+      position: absolute;
+      top: 65px;
+      right: 0;
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+  
+    .nav-links.active {
+      max-height: 200px;
+      padding-bottom: 10px;
+    }
+  
+    .nav-links li {
+      margin: 10px 0;
+      text-align: center;
+    }
+  }
+
+
+
+  /* FOOTER STYLES */
+
+.footer {
+    background-color: #121212;
+    color: #fff;
+    padding: 30px 20px 10px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
+  }
+  
+  .footer-brand h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(192, 54, 54);
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-links a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-links a:hover {
+    color: #fff;
+  }
+  
+  .footer-social {
+    color: #bbb;
+    margin-left: 15px;
+    font-size: 18px;
+    transition: color 0.3s;
+    margin-right: 20px;
+    /* ✅ Added this line */
+  }
+  
+  
+  .footer-social a {
+    color: #bbb;
+    margin-left: 15px;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    margin-right: 20px;
+  }
+  
+  /* Hover Colors Based on Brand */
+  .footer-social a:hover .fa-facebook-f {
+    color: #1877F2;
+    /* Facebook Blue */
+  }
+  
+  .footer-social a:hover .fa-twitter {
+    color: #1DA1F2;
+    /* Twitter Blue */
+  }
+  
+  .footer-social a:hover .fa-instagram {
+    color: #E4405F;
+    /* Instagram Pinkish Red */
+  }
+  
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #aaa;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 15px;
+    }
+  
+    .footer-links {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .footer-social {
+      margin-top: 10px;
+    }
+  }

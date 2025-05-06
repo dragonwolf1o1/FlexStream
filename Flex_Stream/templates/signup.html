@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup- Flex Stream</title>
+    <link rel="stylesheet" href="{% static 'CSS/base.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static "CSS/signup.css" %}">
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+
+    <!-- Responsive Navbar -->
+    <nav id="navbar">
+      <a href="{% url 'home' %}"><div class="logo">FlexStream</div></a>
+      {% if request.session.username %}
+      <h2>{{ request.session.name }} </h2>
+      <div class="auth-buttons">
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'profile' %}">Profile</a>
+      </div>
+      {% else %}
+      <h2>Guest</h2>
+      <div class="auth-buttons">
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Signup</a>
+      {% endif %}
+    </nav>
+
+    <!-- Signup Form -->
+    <main class="main-content">
+      <div class="signup-box">
+        <h2>Create Your Account</h2>
+
+        {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+          <div class="alert {{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone No.</label>
+            <input type="phone" name="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label for="password1">Password</label>
+            <input type="password" name="password1" required />
+          </div>
+
+          <div class="form-group">
+            <label for="password2">Confirm Password</label>
+            <input type="password" name="password2" required />
+          </div>
+
+          <button type="submit" class="signup-btn">Sign Up</button>
+          <div class="login-link">
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h2>FlexStream</h2>
+        </div>
+
+        <div class="footer-links">
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'feedback' %}">Suggestion/Feedback</a>
+        </div>
+
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 FlexStream Developed by FlexStream</p>
+      </div>
+    </footer>
+    <script src="{% static 'JavaScript/base.js' %}"></script>
+  </body>
+</html>
