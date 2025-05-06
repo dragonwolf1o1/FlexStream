@@ -19,6 +19,8 @@ def logins(request):
         username = request.POST['username']
         password = request.POST['password']
         
+            
+        
         try:
             user = UserProfile.objects.get(username=username)
             if check_password(password, user.password):
@@ -26,8 +28,9 @@ def logins(request):
                 request.session['user_id'] = user.id
                 request.session['username'] = user.username
                 request.session['name'] = user.name
-                messages
-                time.sleep(1)
+                request.session['email'] = user.email
+                request.session['phone'] = user.phone
+                messages.success(request, "Login successful!")
                 return redirect('home')
             else:
                 messages.error(request, "Invalid password or username.")
@@ -98,4 +101,39 @@ def feedback(request):
     return render(request, 'feedback.html')
 
 def profile(request):
-    return render(request,'index.html')
+     user_id = request.session.get('user_id')
+     if not user_id:
+        messages.error(request, "You must be logged in.")
+        return redirect('login')
+
+     user = UserProfile.objects.get(id=user_id)
+
+     if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        profile_pic = request.FILES.get('profile_picture')  # get image file
+
+        if name and email and phone:
+            user.name = name
+            user.email = email
+            user.phone = phone
+
+            if profile_pic:
+                ext = profile_pic.name.split('.')[-1]
+                profile_pic.name = f"{user.username}.{ext}"  # Save image as username.ext
+                user.profile_picture = profile_pic
+
+            user.save()
+
+            # Update session values
+            request.session['name'] = name
+            request.session['email'] = email
+            request.session['phone'] = phone
+
+            messages.success(request, "Profile updated successfully.")
+            return redirect('profile')
+        else:
+            messages.error(request, "All fields are required.")
+
+     return render(request, 'profile.html', {'user': user})

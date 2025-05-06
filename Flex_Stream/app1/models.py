@@ -1,9 +1,16 @@
 from django.db import models
+import os
+from django.utils.text import slugify
 
 # Create your models here.
 
+def profile_photo_upload_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f"{slugify(instance.username)}.{ext}"  # example: aman.jpg
+    return os.path.join('profile_photos/', filename)
 class UserProfile(models.Model):
     id=models.AutoField(primary_key=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', default='profile_pics/default.png')
     name=models.CharField(max_length=100)
     username=models.CharField(max_length=100,unique=True)
     password=models.CharField(max_length=100)
